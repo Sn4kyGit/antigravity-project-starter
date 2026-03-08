@@ -1,0 +1,30 @@
+{
+  "name": "antigravity-awesome-skills",
+  "version": "1.0.0",
+  "description": "Antigravity Supercharged Project Engine - Unified AI Agent Architecture",
+  "main": "bin/cli.js",
+  "bin": {
+    "antigravity-awesome-skills": "./bin/cli.js",
+    "init-antigravity": "./bin/cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/antigravity-awesome-skills.git"
+  },
+  "keywords": [
+    "ai",
+    "agents",
+    "antigravity",
+    "mcp",
+    "notebooklm",
+    "jcodemunch",
+    "architecture",
+    "openspec"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {}
+}
