@@ -146,6 +146,12 @@ RISIKO-BEWERTUNG:
 ├── 🟡 Mittel: Mehrere Schichten betroffen
 ├── 🟠 Hoch: Breaking Change, Migration
 └── 🔴 Kritisch: Architektur-Änderung → ADR erforderlich
+
+TECH-STACK RESEARCH (nach Architektur-Entscheidungen):
+├── Gewählte Frameworks/Libraries auf Aktualität prüfen
+├── Breaking Changes in neuen Versionen identifizieren
+├── Bei Bedarf jCodeMunch + Web Search für Validierung nutzen
+└── Ergebnisse in design.md / research.md dokumentieren
 ```
 
 ### 📋 GATE 3 — PLAN (Spec-Driven via OpenSpec)

@@ -39,6 +39,21 @@ When ready to implement, run /opsx:apply
    ```
    This creates a scaffolded change at `openspec/changes/<name>/` with `.openspec.yaml`.
 
+2b. **Auto-create feature branch (if in a git repo)**
+    Check if the project is a git repository:
+    ```bash
+    git rev-parse --is-inside-work-tree 2>/dev/null
+    ```
+    If yes:
+    - Create a feature branch named after the change: `feature/<change-name>`
+    - If the project is large or has uncommitted changes, use the `using-git-worktrees` skill pattern instead
+    - Otherwise, simply create and switch to the branch:
+      ```bash
+      git checkout -b "feature/<change-name>"
+      ```
+    - Announce: "Created branch `feature/<change-name>` for this change."
+    If no (not a git repo): Skip silently, continue with artifact creation.
+
 3. **Get the artifact build order**
    ```bash
    openspec status --change "<name>" --json
@@ -79,6 +94,14 @@ When ready to implement, run /opsx:apply
       - Use **AskUserQuestion tool** to clarify
       - Then continue with creation
 
+   d. **Research Nudge (after design artifact is created)**
+      After creating `design.md`, automatically check if a research step would be valuable:
+      - If the design references specific frameworks, libraries, or rapidly evolving tools, suggest:
+        > "Design references [X, Y, Z]. Want me to verify these are current and check for breaking changes or better alternatives?"
+      - If user confirms → use jCodeMunch + web search to validate tech choices, append findings as a `## Research Findings` section in `design.md`
+      - If user declines → continue with task generation
+      - This is a **nudge, not a blocker** — always allow skipping
+
 5. **Show final status**
    ```bash
    openspec status --change "<name>"
@@ -101,6 +124,16 @@ After completing all artifacts, summarize:
 - **IMPORTANT**: `context` and `rules` are constraints for YOU, not content for the file
   - Do NOT copy `<context>`, `<rules>`, `<project_context>` blocks into the artifact
   - These guide what you write, but should never appear in the output
+
+**Tech-Stack Separation (enforced)**
+- `proposal.md` MUST be tech-stack-agnostic. Focus ONLY on the What & Why:
+  - Problem description, user impact, success criteria, scope
+  - Do NOT mention frameworks, languages, databases, or libraries
+  - If the user includes tech details in their request, acknowledge them but defer to `design.md`
+- `design.md` is WHERE the tech stack belongs:
+  - Architecture decisions, framework choices, data layer, API patterns
+  - Reference the proposal for functional requirements
+- This separation ensures specs stay reusable across stack changes
 
 **Guardrails**
 - Create ALL artifacts needed for implementation (as defined by schema's `apply.requires`)

@@ -104,6 +104,15 @@ Archive a completed change in the experimental workflow.
 All artifacts complete. All tasks complete.
 ```
 
+7. **Branch cleanup hint (if feature branch exists)**
+
+   Check if branch `feature/<change-name>` exists:
+   ```bash
+   git branch --list "feature/<change-name>"
+   ```
+   If it exists, suggest:
+   > "Branch `feature/<change-name>` still exists. Merge or delete it?"
+
 **Guardrails**
 - Always prompt for change selection if not provided
 - Use artifact graph (openspec status --json) for completion checking
@@ -112,3 +121,4 @@ All artifacts complete. All tasks complete.
 - Show clear summary of what happened
 - If sync is requested, use openspec-sync-specs approach (agent-driven)
 - If delta specs exist, always run the sync assessment and show the combined summary before prompting
+- Check for leftover feature branches and suggest cleanup
